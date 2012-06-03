@@ -651,7 +651,7 @@
 	[self addSubview:self.tileBox];
 	
 	NSDate *date = [NSDate date];
-	self.monthYear.text = [NSString stringWithFormat:@"%@ %@",[date monthString],[date yearString]];
+    [self formatMonthYear:date toLabel:self.monthYear];
 	[self addSubview:self.monthYear];
 	
 	
@@ -808,8 +808,7 @@
 	
 	
 	
-	monthYear.text = [NSString stringWithFormat:@"%@ %@",[localNextMonth monthString],[localNextMonth yearString]];
-	
+    [self formatMonthYear:localNextMonth toLabel:self.monthYear];
 	
 
 }
@@ -872,7 +871,7 @@
 		self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.bounds.size.width, self.tileBox.frame.size.height+self.tileBox.frame.origin.y);
 
 		self.shadow.frame = CGRectMake(0, self.frame.size.height-self.shadow.frame.size.height+21, self.shadow.frame.size.width, self.shadow.frame.size.height);
-		self.monthYear.text = [NSString stringWithFormat:@"%@ %@",[date monthString],[date yearString]];
+        [self formatMonthYear:date toLabel:self.monthYear];
 		[currentTile selectDay:info.day];
 		
 		if([self.delegate respondsToSelector:@selector(calendarMonthView:monthDidChange:animated:)])
@@ -937,6 +936,10 @@
 		
 	}
 	
+}
+
+- (void)formatMonthYear:(NSDate *)date toLabel:(UILabel *)label {
+	label.text = [NSString stringWithFormat:@"%@ %@", [date monthString], [date yearString]];
 }
 
 #pragma mark Properties

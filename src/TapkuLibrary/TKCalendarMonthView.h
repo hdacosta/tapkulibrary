@@ -80,6 +80,9 @@
 /** Reloads the current month grid. */
 - (void) reload;
 
+// Subclass friendly method to customize format
+- (void)formatMonthYear:(NSDate *)date toLabel:(UILabel *)label;
+
 @end
 
 /** The delegate of a `TKCalendarMonthView` object must adopt the `TKCalendarMonthViewDelegate` protocol. */ 
